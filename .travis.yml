@@ -5,25 +5,23 @@ language: minimal
 services:
   - docker
 
-addons:
-  apt:
-    update: true
-    packages:
-      - docker-ce
-
 before_install:
-  - docker --version
-  - ls
-  - whoami
+  - pwd
+  - docker pull tomekw/ada-gnat:7:3:0
+  - docker run -v $(pwd):/app tomekw/ada-gnat:7:3:0 sh -c "apt install -y --no-install-recommends gprbuild libahven6-dev lcov"
 
 script:
-  - lsb_release -a
+  - ls
 
 notifications:
   email: false
   irc:
     channels:
       - "chat.freenode.net#onox"
-    use_notice: false
+    template:
+      - "%{repository_slug}#%{build_number} (%{branch} - %{commit} : %{author}): %{result}"
+      - "%{build_url}"
+    use_notice: true
+    skip_join: true
     on_success: always
     on_failure: always
