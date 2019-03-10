@@ -9,7 +9,7 @@ before_install:
   - docker pull tomekw/ada-gnat:7.3.0
 
 script:
-  - docker run -v $(pwd):/app tomekw/ada-gnat:7.3.0 sh -c "apt install -y --no-install-recommends gprbuild libahven6-dev lcov;pwd;ls;gnatmake hello_world.adb;./hello_world"
+  - docker run -v $(pwd):/app tomekw/ada-gnat:7.3.0 sh -c "apt install -y --no-install-recommends gprbuild libahven6-dev lcov;gnatmake hello_world.adb;./hello_world"
 
 after_success:
   - echo "success!"
