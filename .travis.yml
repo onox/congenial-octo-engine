@@ -1,0 +1,18 @@
+dist: xenial
+
+language: minimal
+
+services:
+  - docker
+
+script:
+  - docker --version
+
+notifications:
+  email: false
+  irc:
+    channels:
+      - "chat.freenode.net#onox"
+    use_notice: true
+    on_success: always
+    on_failure: always
