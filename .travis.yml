@@ -5,8 +5,11 @@ language: minimal
 services:
   - docker
 
-script:
+before_install:
   - docker --version
+
+script:
+  - lsb_release -a
 
 notifications:
   email: false
