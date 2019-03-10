@@ -5,12 +5,9 @@ language: minimal
 services:
   - docker
 
-before_install:
-  - pwd
+script:
   - docker pull tomekw/ada-gnat:7:3:0
   - docker run -v $(pwd):/app tomekw/ada-gnat:7:3:0 sh -c "apt install -y --no-install-recommends gprbuild libahven6-dev lcov"
-
-script:
   - ls
 
 notifications:
