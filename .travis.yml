@@ -5,8 +5,16 @@ language: minimal
 services:
   - docker
 
+addons:
+  apt:
+    update: true
+    packages:
+      - docker-ce
+
 before_install:
   - docker --version
+  - ls
+  - whoami
 
 script:
   - lsb_release -a
@@ -16,6 +24,6 @@ notifications:
   irc:
     channels:
       - "chat.freenode.net#onox"
-    use_notice: true
+    use_notice: false
     on_success: always
     on_failure: always
