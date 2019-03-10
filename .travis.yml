@@ -5,9 +5,11 @@ language: minimal
 services:
   - docker
 
+before_install:
+  - docker pull tomekw/ada-gnat:7.3.0
+
 script:
-  - docker pull tomekw/ada-gnat:7:3:0
-  - docker run -v $(pwd):/app tomekw/ada-gnat:7:3:0 sh -c "apt install -y --no-install-recommends gprbuild libahven6-dev lcov"
+  - docker run -v $(pwd):/app tomekw/ada-gnat:7.3.0 sh -c "apt install -y --no-install-recommends gprbuild libahven6-dev lcov"
   - ls
 
 notifications:
@@ -16,8 +18,7 @@ notifications:
     channels:
       - "chat.freenode.net#onox"
     template:
-      - "%{repository_slug}#%{build_number} (%{branch} - %{commit} : %{author}): %{result}"
+      - "%{repository_slug}#%{build_number} - %{commit} by %{author} on %{branch}: %{message}"
       - "%{build_url}"
-    use_notice: true
     on_success: always
     on_failure: always
